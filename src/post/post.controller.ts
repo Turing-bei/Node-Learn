@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
 import { getPosts, createPost, updatePost, deletePost } from './post.service';
 
@@ -28,10 +28,11 @@ export const store = async (
 ) => {
   // 准备数据
   const { title, content } = request.body;
+  const { id: userId } = request.user;
 
   // 创建内容
   try {
-    const data = await createPost({ title, content });
+    const data = await createPost({ title, content, userId });
     response.status(201).send(data);
   } catch (error) {
     next(error);

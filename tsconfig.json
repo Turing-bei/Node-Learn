@@ -20,4 +20,5 @@
         "node_modules",
         "dist"
     ],
+    "files": ["types/express.d.ts"]
 }
